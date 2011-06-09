@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+require 'RMagick'
+include Magick
+require File.dirname(__FILE__) + '/rollit_common'
+require 'fileutils'
+require "#{SCRIPT_DIR}/RollitTemplateController"
+
+def add_static_templates_to_output_dir
+  FileUtils.cp_r(STATIC_OUTPUT_TEMPLATE_DIR, OUTPUT_DIR)
+end
+
+def copy_summary_images_to_output_dir
+  section_entities.each do |section_id, section_name|
+    unit_entities_in_section(section_id).each do |unit_id, unit_name|
+      summary_images_in_unit(section_id, unit_id).each do |input_image_name|
+        output_image_name = "#{section_id}_#{unit_id}_" + input_image_name.split('.')[0...-1].join + '.png'        
+        input_path = "#{unit_path(section_id, unit_id, unit_name)}/summary_images/#{input_image_name}"
+        
+        
+        fullsize_image = Magick::Image::read(input_path).first
+        fullsize_image.write("#{IMAGE_OUTPUT_DIR}/#{output_image_name}")
+        
+        thumbnail_image = Magick::Image::read(input_path).first
+        thumbnail_image.resize_to_fit!(160, 90)
+        background = Magick::Image.new(160, 90) {self.background_color = "transparent"}
+        thumbnail_image = background.composite(thumbnail_image, Magick::CenterGravity, Magick::OverCompositeOp)
+        thumbnail_image.write("#{THUMBNAIL_IMAGE_OUTPUT_DIR}/#{output_image_name}")        
+      end
+    end
+  end
+end
+
+# ffmpeg -i input.mp4 -acodec libvorbis -vcodec libtheora -f ogv output.ogv
+
+def copy_videos_to_output_dir
+  section_entities.each do |section_id, section_name|
+    unit_entities_in_section(section_id).each do |unit_id, unit_name|
+      unit_video_output_dir = "#{VIDEO_OUTPUT_DIR}/#{section_id}_#{unit_id}/"
+      FileUtils.mkdir_p unit_video_output_dir
+      video_in_unit(section_id, unit_id).each do |video_name|
+        output_path =  unit_video_output_dir + video_name
+        input_path = "#{unit_path(section_id, unit_id, unit_name)}/video/#{video_name}"
+        FileUtils.cp(input_path, output_path)        
+      end
+    end
+  end
+end
+
+FileUtils.remove_dir(OUTPUT_DIR, true)
+add_static_templates_to_output_dir
+rtc = RollitTemplateController.new
+copy_summary_images_to_output_dir
+copy_videos_to_output_dir
+File.open("#{OUTPUT_DIR}/index.html", "w") do |f|
+  f.write(rtc.render template:'index')
+end
+
+
+
+
+
