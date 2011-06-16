@@ -1,0 +1,16 @@
+<nav>
+  <ol>
+    <% nav_elements.each do |section| %>
+      <li>
+        <a href="#section-<%= section[0] %>"><%= section[1] %></a>
+        <ol>
+          <% section[2].each do |unit| %>
+            <li>
+              <a href="#section-<%= section[0] %>-unit-<%= unit[0] %>"><%= unit[1] %></a>
+            </li>
+          <% end %>
+        </ol>
+      </li>
+    <% end %>
+  </ol>  
+</nav>

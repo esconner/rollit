@@ -1,0 +1,26 @@
+<article id="section-<%= section_id %>-unit-<%= unit_id %>" class="unit">
+  <header>
+    <h2><%= unit_id %>. <%= unit_name %></h2>
+  </header>
+  <section class="notes">
+    <%= render_notes_for_unit section_id, unit_id %>
+  </section>
+  <section class="summary-images">
+    <%= render_summary_images section_id, unit_id %>
+  </section>
+  <section class="videos">
+    <% unless video_base %>
+      <div class="no-video-placeholder">NO VIDEO</div>      
+    <% else %>
+      <video width="768" height="496" controls>
+        <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov" type='video/mp4'>
+      </video>
+    <% end %>
+  </section>
+  <section class="exercises">
+    <header>
+      <h3>Exercises</h3>
+    </header>
+    <%= render_exercises_for_unit section_id, unit_id %>
+  </section>  
+</article>

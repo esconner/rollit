@@ -81,8 +81,7 @@ class RollitTemplateController < AbstractController::Base
   def render_summary_images(section_id, unit_id)
     images = ActionView::OutputBuffer.new
     output_summary_images_in_unit(section_id, unit_id).each do |image_name|
-      images << (self.render template: 'image', locals: {image_name: "#{IMAGE_OUTPUT_DIR}/#{image_name}", 
-                                                        thumbnail_image_name: "#{THUMBNAIL_IMAGE_OUTPUT_DIR}/#{image_name}"})
+      images << (self.render template: 'image', locals: {image_name: image_name})
     end
     images     
   end
