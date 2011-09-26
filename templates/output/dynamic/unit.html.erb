@@ -5,18 +5,35 @@
   <section class="notes">
     <%= render_notes_for_unit section_id, unit_id %>
   </section>
-  <section class="summary-images">
-    <%= render_summary_images section_id, unit_id %>
-  </section>
-  <section class="videos">
-    <% unless video_base %>
-      <div class="no-video-placeholder">NO VIDEO</div>      
-    <% else %>
-      <video width="768" height="496" controls>
-        <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov" type='video/mp4'>
-      </video>
-    <% end %>
-  </section>
+  <div class="visualFiles"> 
+    <section class="summary-images">
+      <%= render_summary_images section_id, unit_id %>
+    </section>
+    <section class="videos">
+      <% unless video_base %>
+        <div class="no-video-placeholder">NO VIDEO</div>      
+      <% else %>
+        <video controls>
+          <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov" type='video/mp4'/>
+		  <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.webm" type='video/webm' />
+        </video>
+		<video class="smallVideo" controls>
+          <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.mov" /> <!-- no  type='video/mp4' because android devices won't work with that -->
+		  <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.webm" type='video/webm' />
+        </video><!-- end .smallVideo -->
+		<br />
+		<a href="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov"> download (h.264 Quicktime video) </a>
+		<br />
+		<a href="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.webm"> download (VP8 WebM video)  </a>
+		<div class="smallVideo" />
+		  <br />
+		  <a href="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.mp4"> download (mobile version, h.264 video) </a>
+		  <br />
+		  <a href="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.webm"> download (mobile version, VP8 WebM video) </a>
+		</div><!-- end .smallVideo -->
+	  <% end %>
+    </section>
+  </div>
   <section class="exercises">
     <header>
       <h3>Exercises</h3>

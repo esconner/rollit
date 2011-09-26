@@ -63,8 +63,8 @@ class RollitTemplateController < AbstractController::Base
   
   def render_sections
     sections = ActionView::OutputBuffer.new
-    section_entities.each do |key, value|
-      sections << (self.render template: 'section', locals: {section_id: key, section_name: value})
+    section_entities.each do |section_id, section_name|
+      sections << (self.render template: 'section', locals: {section_id: section_id, section_name: section_name})
     end
     sections
   end

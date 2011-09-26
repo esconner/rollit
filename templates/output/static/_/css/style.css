@@ -1,5 +1,4 @@
-/*
-	HTML5 Reset :: style.css
+/*	HTML5 Reset :: style.css
 	----------------------------------------------------------
 	We have learned much from/been inspired by/taken code where offered from:
 	
@@ -123,8 +122,17 @@ button {width: auto; overflow: visible;}
 /* Ok, this is where the fun starts.
 -------------------------------------------------------------------------------*/
 
-/* new Linux- and Windows-friendly sans-serif font stack: http://mky.be/fontstack */
-body {font: 13px Helmet, Freesans, sans-serif;}
+body {
+    color: #333333;
+    background:white;
+    font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
+}
+
+div.wrapper {
+    width:96%;									/* leave some horizontal space */
+    margin: 0 auto;
+}
+
 
 /* using local fonts? make sure to read up on Paul Irish's 
 	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
@@ -145,66 +153,197 @@ a:link {-webkit-tap-highlight-color: #fcd700;}
 ins {background-color: #fcd700; color: #000; text-decoration: none;}
 mark {background-color: #fcd700; color: #000; font-style: italic; font-weight: bold;}
 
+header.index, .unit, .visualFiles {    
 
-body {
-  color: #333333;
+    margin:1em auto;
+    padding:2em;
+    min-height: 10em;			/* space needed at least in case of "no video" */
+    border: 1px solid #333;
+    text-align:justify;			/* IMHO nicer & easier to read */
+    
+    /* webkit means Chrome, Safari, Android, iOS, may work on Symbian */
+    -webkit-border-radius: 1em;
+
+    /* for KHTML browsers (e.g. konquerer) */
+    -khtml-border-radius: 1em;
+
+    /* CSS 3.0 declaration */
+    border-radius: 1em;
+}
+
+header.index, .unit {    
+
+    /* shadow is defined analogous to border-radius*/
+    -webkit-box-shadow: 0.5em 0.5em 1em #333;
+    -khtml-box-shadow: 0.5em 0.5em 1em #333;
+    box-shadow: 0.5em 0.5em 1em #333;
+
 }
 
 header.index {
-    background-color: #eeeeee;
-    /* TODO: Insert rounded border and drop shadow */
+    background-color: #E1F5A9;
 }
 
 header.index h1 {
-  background-color: #eeeeee;
-  /* TODO: make font lighter */
-  font-style: italic;
-  font-size: 300%;
+    background-color: #E1F5A9;
+    font-size: 3em;
+    font-weight:lighter;
+}
+
+.lowerList {					/* location: header.index -> ordered list -> ordered list */
+    margin: 0 0 0 1em;
+}
+
+.section h2 {
+    font-size:3em;				/* triple font size*/ 
+}
+
+.unit h2 {
+    font-size:2em;				/* double font size*/
+}
+
+.unit ul { 						/* applies to list items written with markdown */
+    list-style:disc;			/* bullets were disabled above (line 38) */ 
+    margin:0 0 0 2em;
+}
+
+.notes, .exercises { 			/* multi-column layout */
+	-webkit-column-width: 20em;
+	-webkit-column-gap: 2em;
+	-webkit-column-rule: 1px solid gray;
+	column-width: 20em;
+	column-gap: 2em;
+	column-rule: 1px solid gray;
+}
+
+section.summary-images a {
+	float:left;
 }
 
 .no-video-placeholder {
-  border: 1px solid gray;
-  float: left;
-  width: 160px;
-  height: 90px;
-  text-align: center;
+    border: 1px solid gray;
+    float: left;
+	min-height:5em;    
+	min-width:10em;
+    text-align: center;
 }
 
-section {
-    clear: left;
+section.videos {
+	clear:both;
 }
 
-.section {
-  background-color: #eeeeee;
-  border: 1px solid black;
-/*  margin: 50px;
-  padding: 50px;
-*/}
+video {
+	width:100%;
+	max-width:800px; /*  higher width might be allowed when resolution is larger than about 2500x1500 */
+}
+
+.smallVideo {
+	display:none;	
+}
+
+.exercises {
+	clear:both;
+}
+
+footer {
+    clear:both;
+}
+
+.unit {
+    background-color: #CED8F6;
+}
+
+article.section h2 {
+	text-shadow: 0.1em 0.1em 0.2em #333;
+}
+
+article.unit h2 {
+	text-shadow: none;
+}
 
 
 /* Print styles!
 -------------------------------------------------------------------------------*/
 @media print {
 
+    header.index, .unit, article.section h2 {
+	    text-shadow:none;
+		box-shadow:none;
+    }
 
+	.unit, header.index, header.index h1 {
+	    background-color: white;
+	}
+	
+	video, section.videos a {
+		display: none;
+	}
+
+	a {
+		text-decoration:none;
+		color: black;
+	}
 
 }
 
-
-/* Media queries!
+/* further media queries!
+   Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ 
 -------------------------------------------------------------------------------*/
 
-/* Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
-@media screen and (max-device-width: 480px) {
+@media (max-width: 600px) {
 	
+	.visualFiles, .unit {    
+    	margin:2px auto;
+	    padding:2px;
+	}
+	
+	section.videos a, .no-video-placeholder {
+		margin-left:1em;
+	}
+	
+	video {
+		display:none;	
+	}
+	
+	.smallVideo {
+		display:inline;	
+	}
+	
+}
+
+/* BOTH following queries may be disabled until "header.index" resizes correctly
+ * with its content without overlapping with sections
+ */
+
+
+@media (min-width: 1160px) {
+
+	header.index {
+		position: fixed;
+	}
+	
+	article.section {		
+		width:70%; 
+		float:right;
+		margin: 1em 0 0 0;		
+	} 
 		
 }
 
-@media all and (orientation: portrait) {
-	
-}
+@media (min-width: 1700px) {	/* experimental ultra widescreen layout */
 
-@media all and (orientation: landscape) {
+	header.index {
+		position: fixed;
+	}
 	
+	section.sections {
+		margin-left: 30%;		/* float:right; wont work / stay clear of header.index */
+	}
+	
+	article.section {		
+		width:50%; 				/* experimental ultra widescreen layout */
+		float:left;
+		margin: 1em 0 0 0;		
+	} 
+		
 }
-
