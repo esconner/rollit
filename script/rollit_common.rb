@@ -32,6 +32,7 @@ OUTPUT_DIR = "#{SCRIPT_DIR}/../output"
 IMAGE_OUTPUT_DIR = "#{OUTPUT_DIR}/_/images"
 THUMBNAIL_IMAGE_OUTPUT_DIR = "#{OUTPUT_DIR}/_/images/thumbnails"
 VIDEO_OUTPUT_DIR = "#{OUTPUT_DIR}/_/video"
+DOWNLOADS_OUTPUT_DIR = "#{OUTPUT_DIR}/_/downloads" # added to store downloads in _/downloads/#_#/FILENAME
 
 TEMPLATE_DIR = "#{SCRIPT_DIR}/../templates"
 
@@ -88,6 +89,12 @@ end
 def summary_images_in_unit(section_id, unit_id)
   images_dir = Dir.new("#{unit_path(section_id, unit_id)}/summary_images")
   images_dir.entries.find_all { |entry| entry[0] != '.' }
+end
+
+# added to iterate over those files
+def downloads_in_unit(section_id, unit_id)
+  downloads_dir = Dir.new("#{unit_path(section_id, unit_id)}/downloads")
+  downloads_dir.entries.find_all { |entry| entry[0] != '.' } # downloads_in_unit should contain all but the hidden files
 end
 
 def output_summary_images_in_unit(section_id, unit_id)
