@@ -97,6 +97,13 @@ File.open("#{OUTPUT_DIR}/index.html", "w") do |f|
   f.write(rtc.render template:'index')
 end
 
+section_entities.each do |section_id, section_name|
+  File.open("#{OUTPUT_DIR}/section_#{section_id}.html", "w") do |f|
+    f.write(rtc.render template: 'section', locals: {section_id: section_id, section_name: section_name})
+  end
+end
+
+
 
 
 

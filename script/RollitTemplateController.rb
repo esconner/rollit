@@ -43,7 +43,6 @@ class RollitTemplateController < AbstractController::Base
   self.view_paths = [DYNAMIC_OUTPUT_TEMPLATE_DIR, SECTIONS_DIR]
   
   helper_method :render_navigation
-  helper_method :render_sections
   helper_method :render_units
   helper_method :render_summary_images
   helper_method :render_notes_for_unit
@@ -60,15 +59,7 @@ class RollitTemplateController < AbstractController::Base
     end
     self.render template: 'navigation', locals: {nav_elements: navigation_elements}
   end
-  
-  def render_sections
-    sections = ActionView::OutputBuffer.new
-    section_entities.each do |section_id, section_name|
-      sections << (self.render template: 'section', locals: {section_id: section_id, section_name: section_name})
-    end
-    sections
-  end
-  
+    
   def render_units(section_id)
     units = ActionView::OutputBuffer.new
     unit_entities_in_section(section_id).each do |unit_id, unit_name|
