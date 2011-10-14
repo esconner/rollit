@@ -159,7 +159,6 @@ header.index, .unit, .visualFiles {
     padding:2em;
     min-height: 10em;			/* space needed at least in case of "no video" */
     border: 1px solid #333;
-    text-align:justify;			/* IMHO nicer & easier to read */
     
     /* webkit means Chrome, Safari, Android, iOS, may work on Symbian */
     -webkit-border-radius: 1em;
@@ -208,12 +207,13 @@ header.index h1 {
 }
 
 .notes, .exercises { 			/* multi-column layout */
-	-webkit-column-width: 20em;
+	-webkit-column-width: 80em;
 	-webkit-column-gap: 2em;
 	-webkit-column-rule: 1px solid gray;
-	column-width: 20em;
+	column-width: 80em;
 	column-gap: 2em;
 	column-rule: 1px solid gray;
+	text-align:justify;			/* IMHO nicer & easier to read */
 }
 
 section.summary-images a {
