@@ -173,9 +173,9 @@ header.index, .unit, .visualFiles {
 header.index, .unit {    
 
     /* shadow is defined analogous to border-radius*/
-    -webkit-box-shadow: 0.5em 0.5em 1em #333;
-    -khtml-box-shadow: 0.5em 0.5em 1em #333;
-    box-shadow: 0.5em 0.5em 1em #333;
+    -webkit-box-shadow: 0em 0.5em 0.5em 0.25em #333;
+    -khtml-box-shadow: 0em 0.5em 0.5em 0.25em #333;
+    box-shadow: 0em 0.5em 0.5em 0.25em #333;
 
 }
 
@@ -251,14 +251,6 @@ footer {
 
 .unit {
     background-color: #CED8F6;
-}
-
-article.section h2 {
-	text-shadow: 0.1em 0.1em 0.2em #333;
-}
-
-article.unit h2 {
-	text-shadow: none;
 }
 
 
