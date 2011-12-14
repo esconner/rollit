@@ -307,11 +307,6 @@ footer {
 	
 }
 
-/* BOTH following queries may be disabled until "header.index" resizes correctly
- * with its content without overlapping with sections
- */
-
-
 @media (min-width: 1160px) {
 
 	header.index {
@@ -325,6 +320,10 @@ footer {
 	} 
 		
 }
+
+/* following query may be disabled until "header.index" resizes correctly
+ * with its content without overlapping with sections
+ */
 
 @media (min-width: 1700px) {	/* experimental ultra widescreen layout */
 
