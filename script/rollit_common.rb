@@ -94,7 +94,8 @@ end
 # added to iterate over those files
 def downloads_in_unit(section_id, unit_id)
   downloads_dir = Dir.new("#{unit_path(section_id, unit_id)}/downloads")
-  downloads_dir.entries.find_all { |entry| entry[0] != '.' } # downloads_in_unit should contain all but the hidden files
+  # downloads_in_unit should contain all but the hidden files
+  downloads_dir.entries.find_all { |entry| entry[0] != '.' }
 end
 
 def output_summary_images_in_unit(section_id, unit_id)
