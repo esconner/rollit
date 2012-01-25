@@ -16,9 +16,17 @@
         <video controls>
           <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov" type='video/mp4'/>
 		  <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.webm" type='video/webm' />
-        </video>
+		  <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov" id="container"/>
+		</video>
+		<script type="text/javascript">
+		  jwplayer("container").setup({
+		    autostart: true,
+			controlbar.position: bottom,
+		    flashplayer: "_/js/player.swf"
+		  });
+		</script>
 		<video class="smallVideo" controls>
-          <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.mov" /> <!-- no  type='video/mp4' because android devices won't work with that -->
+          <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.mov" /> <!-- no  type='video/mp4' because android devices supposedly won't work with that -->
 		  <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.webm" type='video/webm' />
         </video><!-- end .smallVideo -->
 		<br />
