@@ -13,19 +13,10 @@
       <% unless video_base %>
         <div class="no-video-placeholder">NO VIDEO</div>      
       <% else %>
-        <video controls id="container_<%= section_id %>_<%= unit_id %>">
+        <video controls>
           <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov" type='video/mp4'/>
 		  <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.webm" type='video/webm' />
 		</video>
-	<script type="text/javascript">
-	  <!--
-	    jwplayer("container_<%= section_id %>_<%= unit_id %>").setup({
-	      flashplayer: "_/flash/player.swf",
-		  width: '100%',
-		  height: '66%',
-		  file: "_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>.mov",
-	    });
-	  //-->
 	</script>
 		<video class="smallVideo" controls>
           <source src="_/video/<%= section_id %>_<%= unit_id %>/<%= video_base %>_mobile.mov" /> <!-- no  type='video/mp4' because android devices supposedly won't work with that -->
