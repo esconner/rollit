@@ -206,16 +206,6 @@ header.index h1 {
     margin:0 0 0 2em;
 }
 
-.notes, .exercises { 			/* multi-column layout */
-	-webkit-column-width: 80em;
-	-webkit-column-gap: 2em;
-	-webkit-column-rule: 1px solid gray;
-	column-width: 80em;
-	column-gap: 2em;
-	column-rule: 1px solid gray;
-	text-align:justify;			/* IMHO nicer & easier to read */
-}
-
 section.summary-images a {
 	float:left;
 }
