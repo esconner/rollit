@@ -159,7 +159,6 @@ header.index, .unit, .visualFiles {
     padding:2em;
     min-height: 10em;			/* space needed at least in case of "no video" */
     border: 1px solid #333;
-    text-align:justify;			/* IMHO nicer & easier to read */
     
     /* webkit means Chrome, Safari, Android, iOS, may work on Symbian */
     -webkit-border-radius: 1em;
@@ -174,9 +173,9 @@ header.index, .unit, .visualFiles {
 header.index, .unit {    
 
     /* shadow is defined analogous to border-radius*/
-    -webkit-box-shadow: 0.5em 0.5em 1em #333;
-    -khtml-box-shadow: 0.5em 0.5em 1em #333;
-    box-shadow: 0.5em 0.5em 1em #333;
+    -webkit-box-shadow: 0em 0.3em 0.5em 0.1em #333;
+    -khtml-box-shadow: 0em 0.3em 0.5em 0.1em #333;
+    box-shadow: 0em 0.3em 0.5em 0.1em #333;
 
 }
 
@@ -205,15 +204,6 @@ header.index h1 {
 .unit ul { 						/* applies to list items written with markdown */
     list-style:disc;			/* bullets were disabled above (line 38) */ 
     margin:0 0 0 2em;
-}
-
-.notes, .exercises { 			/* multi-column layout */
-	-webkit-column-width: 20em;
-	-webkit-column-gap: 2em;
-	-webkit-column-rule: 1px solid gray;
-	column-width: 20em;
-	column-gap: 2em;
-	column-rule: 1px solid gray;
 }
 
 section.summary-images a {
@@ -253,14 +243,6 @@ footer {
     background-color: #CED8F6;
 }
 
-article.section h2 {
-	text-shadow: 0.1em 0.1em 0.2em #333;
-}
-
-article.unit h2 {
-	text-shadow: none;
-}
-
 
 /* Print styles!
 -------------------------------------------------------------------------------*/
@@ -292,8 +274,12 @@ article.unit h2 {
 
 @media (max-width: 600px) {
 	
+	body {
+		font-size: 80%;
+	}
+	
 	.visualFiles, .unit {    
-    	margin:2px auto;
+    	margin:10px 2px auto;
 	    padding:2px;
 	}
 	
@@ -311,11 +297,6 @@ article.unit h2 {
 	
 }
 
-/* BOTH following queries may be disabled until "header.index" resizes correctly
- * with its content without overlapping with sections
- */
-
-
 @media (min-width: 1160px) {
 
 	header.index {
@@ -329,6 +310,10 @@ article.unit h2 {
 	} 
 		
 }
+
+/* following query may be disabled until "header.index" resizes correctly
+ * with its content without overlapping with sections
+ */
 
 @media (min-width: 1700px) {	/* experimental ultra widescreen layout */
 
